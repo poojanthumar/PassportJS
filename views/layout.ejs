@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            <%= locals.title%>
+        </title>
+        <script src="https://kit.fontawesome.com/2982f7c64c.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/css/layout.css">
+        <%- style %>
+        <%- script %>   
+    </head>
+    <body>
+        <header>
+            <div class = "flexing">
+                <div class = "float-left">
+                    <a href="/">Social Media</a>
+                </div>
+                <% if (locals.user){ %>
+                    <div class = "float-left">
+                        <a href="/users/profile">
+                            <%= user.name %>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="/sign-out">Sign Out</a>
+                    </div>
+                <% }else{ %>
+
+                    <div>
+                        <a href="/sign-in">Sign In</a>
+                    </div>
+
+                    <div>
+                        <a href="/sign-up">Sign Up</a>
+                    </div>
+
+
+                <% } %>
+            </div>
+        </header>
+
+        <%- body %>
+    </body>
+</html>

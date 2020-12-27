@@ -1,0 +1,19 @@
+
+<div style="display: flex; align-items: center; justify-content: center; padding-top: 20vh; text-align: center;">
+    
+    <form action="/create-user" method = "POST">
+        <h1>Sign Up</h1>
+        <br><br>
+        <input type="text" name="name" placeholder="Your Name" required><br><br>
+        <input type="email" name="email" placeholder="Your Email" onblur="checkAvailaility()" required><br><br>
+        <input type="password" name="password" placeholder="Password" required><br><br>
+        <input type="password" name="confirm_password" placeholder="Confirm Password" required><br><br>
+        <input type="submit" value="Sign Up">
+    </form>
+</div>
+
+<script>
+    function checkAvailaility(){
+        console.log(document.forms[0].elements[1].value);
+    }
+</script>
