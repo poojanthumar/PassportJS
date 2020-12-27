@@ -7,10 +7,11 @@ const expressLayouts = require('express-ejs-layouts');
 const session = require('express-session');
 const passport = require("passport");
 const passportLocal = require("./config/passport-local");
-const { urlencoded } = require('express');
+const mongoStore = require('connect-mongo')(session)
 
 var cookieParser = require('cookie-parser');
-app.use(express.urlencoded());
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
 app.use(cookieParser());
 app.use(express.static('assets'));
 app.set('view engine', 'ejs');
@@ -27,7 +28,13 @@ app.use(session({
     secret: 'debugerr',
     saveUninitialized: false,
     resave: false,
-    cookie: {maxAge: (1000*60*30)}
+    cookie: {maxAge: (1000*60*30)},
+    store: new mongoStore ({
+        mongooseConnection: db,
+        autoRemove: 'disabled'
+    }, function(err){
+        console.log("MongoStore Error");
+    })
 }))
 
 app.use(passport.initialize());

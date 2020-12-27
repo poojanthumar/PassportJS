@@ -54,6 +54,21 @@ module.exports.createUser = function(req, res)
     });
 }
 
+module.exports.emailexist = function(req,res){
+    console.log(req.body);
+    User.findOne({email: req.body.email}, function(err, user){
+        if(err){console.log('error in finding user in check'); return}
+
+        if (user){
+            return res.send("Email Already In Use");
+
+        }else{
+            return res.send("Email Available");
+        }
+
+    });
+}
+
 module.exports.createSession = function(req, res)
 {
     return res.redirect('/');
